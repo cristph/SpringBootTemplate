@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.enlink.admin.core.dao.mapper.ManagerMapper" >
+  <resultMap id="BaseResultMap" type="com.enlink.admin.core.pojos.entity.Manager">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="access_id" jdbcType="BIGINT" property="accessId" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="tel" jdbcType="VARCHAR" property="tel" />
+    <result column="max_logon_num" jdbcType="INTEGER" property="maxLogonNum" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="mac" jdbcType="VARCHAR" property="mac" />
+    <result column="ip_mac" jdbcType="VARCHAR" property="ipMac" />
+    <result column="status" jdbcType="CHAR" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_operator" jdbcType="BIGINT" property="createOperator" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_operator" jdbcType="BIGINT" property="updateOperator" />
+    <result column="operator_type" jdbcType="INTEGER" property="operatorType" />
+    <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime" />
+    <result column="delete_operator" jdbcType="BIGINT" property="deleteOperator" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+  </resultMap>
+
+  <resultMap id="listMap" type="com.enlink.admin.core.pojos.entity.Manager" >
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="access_id" jdbcType="BIGINT" property="accessId" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="max_logon_num" property="maxLogonNum" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="mac" property="mac" jdbcType="VARCHAR" />
+    <result column="ip_mac" property="ipMac" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="CHAR" />
+  </resultMap>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select * from manager where id = #{id}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.enlink.admin.core.pojos.entity.Manager" >
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="accessId != null" >
+        access_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="maxLogonNum != null" >
+        max_logon_num,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="mac != null" >
+        mac,
+      </if>
+      <if test="ipMac != null" >
+        ip_mac,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="createOperator != null" >
+        create_operator,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateOperator != null" >
+        update_operator,
+      </if>
+      <if test="operatorType != null" >
+        operator_type,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteOperator != null" >
+        delete_operator,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="accessId != null" >
+        #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLogonNum != null" >
+        #{maxLogonNum,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="ipMac != null" >
+        #{ipMac,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOperator != null" >
+        #{createOperator,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOperator != null" >
+        #{updateOperator,jdbcType=INTEGER},
+      </if>
+      <if test="operatorType != null" >
+        #{operatorType,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteOperator != null" >
+        #{deleteOperator,jdbcType=INTEGER},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="java.lang.Long" >
+    update manager
+    <set >
+      <if test="accessId != null" >
+        access_id = #{accessId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="maxLogonNum != null" >
+        max_logon_num = #{maxLogonNum,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="mac != null" >
+        mac = #{mac,jdbcType=VARCHAR},
+      </if>
+      <if test="ipMac != null" >
+        ip_mac = #{ipMac,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createOperator != null" >
+        create_operator = #{createOperator,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateOperator != null" >
+        update_operator = #{updateOperator,jdbcType=INTEGER},
+      </if>
+      <if test="operatorType != null" >
+        operator_type = #{operatorType,jdbcType=INTEGER},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteOperator != null" >
+        delete_operator = #{deleteOperator,jdbcType=INTEGER},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id=#{id}
+  </update>
+
+  <update id="batchSoftDelete">
+    update manager set
+    delete_flag=1,
+    delete_operator=#{operatorId},
+    delete_time=#{deleteTime}
+    where id in
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <update id="updateAccess">
+    UPDATE manager set access_id=-1 WHERE access_id IN
+    <foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
+      #{item}
+    </foreach>
+  </update>
+
+  <select id="getOtherUserNameCount" resultType="long">
+    SELECT count(1) FROM manager WHERE user_name=#{userName} AND id!=#{id}
+  </select>
+  <select id="getUserNameCount" resultType="long">
+    SELECT count(1) FROM manager WHERE user_name=#{userName}
+  </select>
+  <select id="getUserCountById" resultType="long">
+    SELECT count(1) FROM manager WHERE id=#{id} AND delete_flag = 0
+  </select>
+  <select id="getUserCountByName" resultType="long">
+    SELECT count(1) FROM manager WHERE user_name=#{userName} AND password=#{password}
+  </select>
+  <select id="getManagerList" resultMap="listMap">
+    SELECT * FROM manager WHERE user_name=#{userName}
+  </select>
+  <select id="selectAll" resultMap="listMap">
+    SELECT * FROM manager WHERE delete_flag = 0
+  </select>
+  <select id="search" resultMap="listMap" >
+    SELECT * FROM manager
+    <where>
+      delete_flag = 0
+      AND (
+      user_name LIKE '%${searchContent}%'
+      OR
+      role_name LIKE '%${searchContent}%'
+      OR
+      email LIKE '%${searchContent}%'
+      OR
+      tel LIKE '%${searchContent}%'
+      OR
+      ip_mac LIKE '%${searchContent}%'
+      )
+    </where>
+  </select>
+</mapper>
