@@ -7,9 +7,7 @@ import org.springframework.beans.BeanUtils;
 
 import java.util.Arrays;
 
-/**
- * Created by Administrator on 2017/8/16.
- */
+
 public abstract class BaseDTO<T extends BaseEntity> {
 
     public abstract boolean checkLegal();

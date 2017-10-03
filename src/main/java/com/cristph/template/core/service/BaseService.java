@@ -2,10 +2,7 @@ package com.cristph.template.core.service;
 
 import java.util.List;
 
-/**
- * Created by ENLINK on 2017/8/14.
- */
-public interface CommonService<T> {
+public interface BaseService<T> {
 
     //分页查询，从当前页currentPage开始,查询pageSize条数据
     List<T> search(int currentPage, int pageSize);

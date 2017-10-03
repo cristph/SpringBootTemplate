@@ -9,7 +9,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CommonServiceImpl<T extends BaseEntity, Mapper extends BaseMapper<T>> implements CommonService<T> {
+public class BaseServiceImpl<T extends BaseEntity, Mapper extends BaseMapper<T>> implements BaseService<T> {
 
     @Autowired
     public Mapper mapper;
@@ -52,7 +52,7 @@ public class CommonServiceImpl<T extends BaseEntity, Mapper extends BaseMapper<T
     public int delete(Object key, Long operatorId) {
         T t = mapper.selectByPrimaryKey(key);
         if (t != null) {
-            t.setDeleteFlag(1L);
+            t.setDeleteFlag(1);
             t.setDeleteOperator(operatorId);
             t.setDeleteTime(new Date(System.currentTimeMillis()));
             return mapper.updateByPrimaryKeySelective(t);
