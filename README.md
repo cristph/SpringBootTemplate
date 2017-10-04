@@ -14,6 +14,7 @@ sql see in dictionary
 
 to use maven generate runnable jar
 >cd {rootDictionary}
+
 >mvn clean install
 
 then run the generated jar
