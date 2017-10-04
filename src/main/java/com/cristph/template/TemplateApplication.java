@@ -8,9 +8,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
-/**
- * Created by Cristph on 2017/10/3.
- */
 
 @SpringBootApplication
 @MapperScan(basePackages = "com.cristph.template.core.dao.mapper")

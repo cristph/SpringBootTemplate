@@ -66,37 +66,18 @@ public class Response implements Serializable{
         this.extend = extend;
     }
 
-    /**
-     * 请求数据处理成功时调用
-     * @return Response
-     */
     public static Response success() {
         return new Response(Status.SUCCESS, null, null, null);
     }
-    /**
-     * 请求数据处理成功时调用
-     * @param data Object  数据或列表
-     * @return Response
-     */
+
     public static Response success(Object data) {
         return new Response(Status.SUCCESS, null , data, null);
     }
 
-    /**
-     * 请求数据处理成功时调用
-     * @param extend Map<String, Object> 扩展信息，map结构，可存放额外信息，如分页数，数据总量等
-     * @return  Response
-     */
     public static Response success(Map<String, Object> extend) {
         return new Response(Status.SUCCESS, null , null, extend);
     }
 
-    /**
-     * 请求数据处理成功时调用
-     * @param data Object  数据或列表
-     * @param extend Map<String, Object> 扩展信息，map结构，可存放额外信息，如分页数，数据总量等
-     * @return Response
-     */
     public static Response success(Object data, Map<String, Object> extend) {
         return new Response(Status.SUCCESS, null, data, extend);
     }
@@ -107,30 +88,14 @@ public class Response implements Serializable{
         return new Response(Status.SUCCESS, null, data, map);
     }
 
-
-    /**
-     * 请求数据处理失败时调用nu
-     * @return Response
-     */
     public static Response error() {
         return new Response(Status.ERROR, null, null, null);
     }
 
-    /**
-     * 请求数据处理失败时调用
-     * @param code Code 返回错误状态码
-     * @return Response
-     */
     public static Response error(Code code) {
         return new Response(Status.ERROR, code, null, null);
     }
 
-    /**
-     * 请求数据处理失败时调用
-     * @param code Code 返回错误状态码
-     * @param extend Map<String, Object> 扩展信息，map结构，可存放额外信息，如分页数，数据总量等
-     * @return Response
-     */
     public static Response error(Code code, Map<String, Object> extend) {
         return new Response(Status.ERROR, code, "ERROR", extend);
     }

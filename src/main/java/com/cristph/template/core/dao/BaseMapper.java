@@ -5,28 +5,34 @@ import org.apache.ibatis.annotations.Param;
 import java.sql.Date;
 import java.util.List;
 
-/**
- * Created by ENLINK on 2017/8/14.
- */
 public interface BaseMapper<T> {
 
+    //插入
     int insert(T t);
 
     int insertSelective(T t);
 
+    //查询
     T selectByPrimaryKey(Object key);
 
-    List<T> selectByCondition(T t);
+    List<T> selectAll();
+
+    //更新
+    int updateByPrimaryKey(T t);
 
     int updateByPrimaryKeySelective(T t);
 
-    int updateAll(T t);
+    //软删除
+    int softDeleteByPrimaryKey(Object key,
+                               @Param("deleteTime") Date deleteTime,
+                               @Param("deleteOperatorId") Object deleteOperatorId);
 
-    int batchSoftDelete(@Param("list") List<Object> list,
+    int batchSoftDelete(@Param("ids") Object[] ids,
                         @Param("deleteTime") Date deleteTime,
-                        @Param("operatorId") Long operatorId);
+                        @Param("deleteOperatorId") Object deleteOperatorId);
 
-    List<T> search(@Param("searchContent") String searchContent);
+    //硬删除
+    int hardDeleteByPrimaryKey(Object key);
 
-    List<T> selectAll();
+    int batchHardDelete(@Param("ids") Object[] ids);
 }

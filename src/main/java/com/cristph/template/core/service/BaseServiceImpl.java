@@ -6,7 +6,6 @@ import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public class BaseServiceImpl<T extends BaseEntity, Mapper extends BaseMapper<T>> implements BaseService<T> {
@@ -15,76 +14,77 @@ public class BaseServiceImpl<T extends BaseEntity, Mapper extends BaseMapper<T>>
     public Mapper mapper;
 
     @Override
-    public List<T> search(int currentPage, int pageSize) {
+    public List<T> listPage(int currentPage, int pageSize) {
         PageHelper.startPage(currentPage, pageSize);
         return mapper.selectAll();
     }
 
     @Override
-    public List<T> getAll() {
+    public List<T> listAll() {
         return mapper.selectAll();
     }
 
     @Override
-    public List<T> search(int currentPage, int pageSize, String searchContent) {
-        PageHelper.startPage(currentPage, pageSize);
-        return mapper.search(searchContent);
-    }
-
-    @Override
-    public T getEntityByKey(Object key) {
+    public T searchByKey(Object key) {
         return mapper.selectByPrimaryKey(key);
     }
 
     @Override
-    public int add(T entity) {
-        entity.setCreateTime(new Date(System.currentTimeMillis()));
-        entity.setUpdateTime(new Date(System.currentTimeMillis()));
+    public int add(T entity, Object operatorId) {
+        entity.setCreateOperator((Long) operatorId);
+        entity.setUpdateOperator((Long) operatorId);
+        Date now = new Date(System.currentTimeMillis());
+        entity.setCreateTime(now);
+        entity.setUpdateTime(now);
+        return mapper.insert(entity);
+    }
+
+    @Override
+    public int addSelective(T entity, Object operatorId) {
+        entity.setCreateOperator((Long) operatorId);
+        entity.setUpdateOperator((Long) operatorId);
+        Date now = new Date(System.currentTimeMillis());
+        entity.setCreateTime(now);
+        entity.setUpdateTime(now);
         return mapper.insertSelective(entity);
     }
 
     @Override
-    public int addWithDefaultValues(T entity) {
-        return mapper.insertSelective(entity);
+    public int update(T entity, Object operatorId) {
+        entity.setUpdateOperator((Long) operatorId);
+        Date now = new Date(System.currentTimeMillis());
+        entity.setUpdateTime(now);
+        return mapper.updateByPrimaryKey(entity);
     }
 
     @Override
-    public int delete(Object key, Long operatorId) {
-        T t = mapper.selectByPrimaryKey(key);
-        if (t != null) {
-            t.setDeleteFlag(1);
-            t.setDeleteOperator(operatorId);
-            t.setDeleteTime(new Date(System.currentTimeMillis()));
-            return mapper.updateByPrimaryKeySelective(t);
-        }
-        return 0;
-    }
-
-    @Override
-    public int delete(List<Object> keys, Long operatorId) {
-        //添加-1L纯属是为了mybatis在动态使用foreach的时候list非空不生效的问题
-        keys.add(-1L);
-        return mapper.batchSoftDelete(keys, new Date(System.currentTimeMillis()), operatorId);
-    }
-
-    @Override
-    public int batchDelete(Object[] keys, Long operatorId) {
-        List<Object> list = new ArrayList();
-        for (Object key : keys) {
-            list.add(key);
-        }
-        return delete(list, operatorId);
-    }
-
-    @Override
-    public int updateAll(T entity) {
-        entity.setUpdateTime(new Date(System.currentTimeMillis()));
-        return mapper.updateAll(entity);
-    }
-
-    @Override
-    public int updateNotNull(T entity) {
-        entity.setUpdateTime(new Date(System.currentTimeMillis()));
+    public int updateSelective(T entity, Object operatorId) {
+        entity.setUpdateOperator((Long) operatorId);
+        Date now = new Date(System.currentTimeMillis());
+        entity.setUpdateTime(now);
         return mapper.updateByPrimaryKeySelective(entity);
     }
+
+    @Override
+    public int softDelete(Object key, Object operatorId) {
+        Date now = new Date(System.currentTimeMillis());
+        return mapper.softDeleteByPrimaryKey(key, now, operatorId);
+    }
+
+    @Override
+    public int batchSoftDelete(Object[] keys, Object operatorId) {
+        Date now = new Date(System.currentTimeMillis());
+        return mapper.batchSoftDelete(keys, now, operatorId);
+    }
+
+    @Override
+    public int hardDelete(Object key) {
+        return mapper.hardDeleteByPrimaryKey(key);
+    }
+
+    @Override
+    public int batchHardDelete(Object[] keys) {
+        return mapper.batchHardDelete(keys);
+    }
+
 }

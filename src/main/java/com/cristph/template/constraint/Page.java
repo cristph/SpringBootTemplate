@@ -15,9 +15,6 @@ public class Page implements Serializable {
     private final int defaultCurrentPage = 1;
     private final int defaultPageSize = 10;
 
-    public Page() {
-    }
-
     public Page(int currentPage, int pageSize, long totalHits) {
         if (defaultCurrentPage <= 0) {
             this.currentPage = defaultCurrentPage;

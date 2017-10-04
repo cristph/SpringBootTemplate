@@ -9,4 +9,11 @@ import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper extends BaseMapper<User>{
 
+    Long countByName(String keyword);
+
+    Long countById(Long id);
+
+    Long countByOtherUserName(@Param("id") Long id, @Param("keyword") String keyword);
+
+    List<User> fuzzySearchByName(@Param("keyword") String keyword);
 }
