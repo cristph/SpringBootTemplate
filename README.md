@@ -1,8 +1,8 @@
 # SpringBootTemplate
 <h2>This can be used as a boot-starter for java web projects</h2>
-1. features polymorphism,encapsulation,etc.
-2. features RESTFUL API
-3. use Mybatis as ORM frame
+- features polymorphism,encapsulation,etc.
+- features RESTFUL API
+- use Mybatis as ORM frame
 
 request document see here [Postman is recommended]
 >https://documenter.getpostman.com/view/2209600/springboottemplate/7158Fdy
